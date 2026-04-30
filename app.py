@@ -1,6 +1,8 @@
 import os
 
-restaurantes = ['Hamburguer', 'Onion ring', 'Pizza hut']
+restaurantes = [{'Nome': 'Praça', 'Categoria': 'Japonesa', 'Ativo': False}, 
+                {'Nome': 'Pizza Hut', 'Categoria': 'Pizzaria', 'Ativo': True},
+                {'Nome': 'Haburguer`s Veg', 'Categoria': 'Lanches', 'Ativo': False}]
 
 def exibir_nome_programa():
     print(""""
@@ -22,7 +24,7 @@ def finalizar_app():
     exibir_sub('\nFinalizando o app')
 
 def voltar_menu():
-    input('Digite uma tecla para voltar ao menu principal')
+    input('\nDigite uma tecla para voltar ao menu principal')
     main()
 
 def opcao_invalida():
@@ -36,15 +38,27 @@ def exibir_sub(texto):
 
 def cadastrar_novo_restaurante():
     exibir_sub('Cadastro de novos restaurantes')
+    
     nome_restaurante = input('Digite o nome do restaurante que deseja cadastrar: ')
-    restaurantes.append(nome_restaurante)
+    categoria = input(f'Digite o nome da categoria do restaurante {nome_restaurante}: ')
+   
+    dados_restaurante = {'Nome': nome_restaurante, 'Categoria': categoria, 'Ativo': False}
+    restaurantes.append(dados_restaurante)
+    
     print(f'\nO restaurante {nome_restaurante} foi cadastrado com sucesso!\n')
+    
     voltar_menu()
     
 def listar_restaurantes():
     exibir_sub('Listando restaurantes')
+    
     for restaurante in restaurantes:
-        print(f'-{restaurante}') 
+        nome_restaurante = restaurante['Nome']
+        categoria = restaurante['Categoria']
+        ativo = restaurante['Ativo']
+        
+        print(f'- {nome_restaurante} | {categoria} | {ativo}')
+        
     voltar_menu()
 
 def escolher_opcao():
