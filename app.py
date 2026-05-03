@@ -5,7 +5,7 @@ restaurantes = [{'Nome': 'Praça', 'Categoria': 'Japonesa', 'Ativo': False},
                 {'Nome': 'Haburguer`s Veg', 'Categoria': 'Lanches', 'Ativo': False}]
 
 def exibir_nome_programa():
-    print(""""
+    print("""
 ██████╗░█████╗░██████╗░░█████╗░██████╗░  ███████╗██╗░░██╗██████╗░██████╗░███████╗░██████╗░██████╗
 ██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗  ██╔════╝╚██╗██╔╝██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝
 ╚█████╗░███████║██████╦╝██║░░██║██████╔╝  █████╗░░░╚███╔╝░██████╔╝██████╔╝█████╗░░╚█████╗░╚█████╗░
@@ -60,6 +60,27 @@ def listar_restaurantes():
         print(f'- {nome_restaurante} | {categoria} | {ativo}')
         
     voltar_menu()
+    
+def alternar_restaurante():
+    exibir_sub('Alterando o estado do restaurante')
+    
+    nome_restaurante = input('Digite o nome do restaurante que deseja alternar o estado: ')
+    restaurante_encontrado = False
+        
+    for restaurante in restaurantes:
+        if nome_restaurante == restaurante ['Nome']:
+            restaurante_encontrado = True
+            restaurante['Ativo'] = not restaurante['Ativo']
+            
+            mensagem = f'O restaurente {nome_restaurante} foi ativado com sucesso!' if restaurante['Ativo'] else f'O restaurante {nome_restaurante} foi desativado com sucesso!'
+            print(mensagem)
+        
+        if not restaurante_encontrado:
+            print('O restaurante não foi encontrado!')    
+    
+    
+    voltar_menu()
+    
 
 def escolher_opcao():
     try:
@@ -75,7 +96,7 @@ def escolher_opcao():
             listar_restaurantes()  
             
         elif opcao_escolhida == 3:
-            print('\nAtivar restaurante\n')
+            alternar_restaurante()
             
         elif opcao_escolhida == 4:
             finalizar_app()
